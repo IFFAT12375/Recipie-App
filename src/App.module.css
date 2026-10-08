@@ -3,7 +3,12 @@
   padding: 0;
 }
 
-.outerContainer {
-  min-height: 100vh;
-  background-color: #f8f9fa;
+.content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.content > * {
+  flex: 1;
 }
