@@ -1,25 +1,20 @@
 import FoodItem from "./foodItem";
+import OuterContainer from "./layout/OuterContainer";
+import InnerContainer from "./layout/InnerContainer";
 import styles from "./FoodList.module.css";
 
 export default function FoodList({ food }) {
   return (
-<section className={styles.outerContainer}>
-      <div className={styles.innerContainer}>
+    <OuterContainer>
+      <InnerContainer>
+        <h1 className={styles.heading}>Food List</h1>
 
-        <h1 className={styles.heading}>
-          Food List
-        </h1>
-
-        <div className={styles.list}>
+        <div className={styles.foodGrid}>
           {food.map((item) => (
-            <FoodItem
-              key={item.id}
-              food={item}
-            />
+            <FoodItem key={item.id} food={item} />
           ))}
         </div>
-
-      </div>
-    </section>
+      </InnerContainer>
+    </OuterContainer>
   );
 }

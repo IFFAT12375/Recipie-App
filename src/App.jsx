@@ -2,13 +2,13 @@ import { useState } from "react";
 import Search from "./components/Search";
 import FoodList from "./components/foodList";
 import Nav from "./components/Nav";
-import styles from "../src/App.module.css";
+import OuterContainer from "../src/components/layout/OuterContainer";
 
 function App() {
   const [food, setFood] = useState([]);
 
   return (
-    <div className={styles.outerContainer}>
+    <OuterContainer>
       <Nav />
 
       <Search setFood={setFood} />
@@ -16,7 +16,7 @@ function App() {
       <main>
         <FoodList food={food} />
       </main>
-    </div>
+    </OuterContainer>
   );
 }
 

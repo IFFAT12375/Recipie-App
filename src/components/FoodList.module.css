@@ -1,23 +1,29 @@
-.outerContainer {
-  width: 100%;
-}
-
-.innerContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 50px 24px;
-}
-
 .heading {
   margin: 0 0 30px;
-
-  font-size: 32px;
-  font-weight: 700;
   text-align: center;
+  font-size: 32px;
 }
 
-.list {
+.foodGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+}
+
+.foodGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .foodGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .foodGrid {
+    grid-template-columns: 1fr;
+  }
 }
