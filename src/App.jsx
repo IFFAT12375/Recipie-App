@@ -10,7 +10,6 @@ import styles from "./App.module.css";
 function App() {
   const [food, setFood] = useState([]);
   const [foodid, setFoodid] = useState(657933);
-  const [recipe, setRecipe] = useState(null);
 
   return (
     <OuterContainer>
@@ -19,9 +18,17 @@ function App() {
       <Search setFood={setFood} />
 
       <InnerContainer>
-        <main className={styles.content}>
-          <FoodList food={food} setFoodid={setFoodid} />
-          <FoodDetails foodid={foodid} />
+      <main className={styles.content}>
+          <section className={styles.results}>
+            <FoodList
+              food={food}
+              setFoodid={setFoodid}
+            />
+          </section>
+
+          <section className={styles.details}>
+            <FoodDetails foodid={foodid} />
+          </section>
         </main>
       </InnerContainer>
     </OuterContainer>
