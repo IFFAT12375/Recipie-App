@@ -9,7 +9,8 @@ import styles from "./App.module.css";
 
 function App() {
   const [food, setFood] = useState([]);
-  const [foodid, setFoodid] = useState(null);
+  const [foodid, setFoodid] = useState(654959);
+  const [recipe, setRecipe] = useState(null);
 
   return (
     <OuterContainer>
