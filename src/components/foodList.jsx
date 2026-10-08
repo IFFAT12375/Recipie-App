@@ -1,16 +1,25 @@
 import FoodItem from "./foodItem";
+import styles from "./FoodList.module.css";
 
 export default function FoodList({ food }) {
   return (
-    <div>
-      <h1>Food List</h1>
-      {food.map((item) => (
-        // <div key={item.id}>
-        //   <h2>{item.title}</h2>
-        //   {/* <img src={item.image} alt={item.title} /> */}
-        // </div>
-        <FoodItem key={item.id} food={item} />
-      ))}
-    </div>
+<section className={styles.outerContainer}>
+      <div className={styles.innerContainer}>
+
+        <h1 className={styles.heading}>
+          Food List
+        </h1>
+
+        <div className={styles.list}>
+          {food.map((item) => (
+            <FoodItem
+              key={item.id}
+              food={item}
+            />
+          ))}
+        </div>
+
+      </div>
+    </section>
   );
 }

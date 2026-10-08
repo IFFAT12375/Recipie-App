@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./Search.module.css";
 
 const URL = "https://api.spoonacular.com/recipes/complexSearch";
 const API_Key = "f2e3f61417df4163b17c074190c85778";
@@ -31,13 +32,30 @@ export default function Search({ setFood }) {
   }, [query, setFood]);
 
   return (
-    <div>
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search..."
-      />
-    </div>
+   <section className={styles.outerContainer}>
+            <div className={styles.innerContainer}>
+                <div className={styles.content}>
+                    <h1>Find Your Next Favourite Recipe</h1>
+
+                    <p>
+                        Search thousands of delicious recipes and discover
+                        something new to cook.
+                    </p>
+
+                    <div className={styles.searchBox}>
+                        <input
+                            type="text"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder="Search for a recipe..."
+                        />
+
+                        <button type="button">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
   );
 }

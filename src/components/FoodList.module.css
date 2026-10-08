@@ -1,0 +1,23 @@
+.outerContainer {
+  width: 100%;
+}
+
+.innerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 24px;
+}
+
+.heading {
+  margin: 0 0 30px;
+
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
