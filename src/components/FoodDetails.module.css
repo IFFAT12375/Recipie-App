@@ -1,0 +1,73 @@
+.container {
+  width: 100%;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.mainHeading {
+  margin: 0 0 24px;
+  font-size: 28px;
+}
+
+.header {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.image {
+  width: 280px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.info {
+  flex: 1;
+}
+
+.info h2 {
+  margin: 0 0 16px;
+  font-size: 26px;
+}
+
+.info p {
+  margin: 8px 0;
+}
+
+.dietary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.dietary span {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #f1f5f9;
+  font-size: 14px;
+}
+
+.summary {
+  margin-bottom: 32px;
+}
+
+.summary h2,
+.steps h2 {
+  margin-bottom: 16px;
+}
+
+.steps {
+  margin-top: 32px;
+}
+
+.steps ol {
+  padding-left: 24px;
+}
+
+.steps li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}

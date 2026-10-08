@@ -1,26 +1,32 @@
 import { useEffect, useState } from "react";
+import IngredientList from "./IngredientList";
+import styles from "./foodDetails.module.css";
 
 export default function FoodDetails({ foodid }) {
   const [recipe, setRecipe] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const URL = `https://api.spoonacular.com/recipes/${foodid}/information`;
-  const API_Key = `YOUR_API_KEY`;
+  const API_Key = "26100debfd4a49e786785252b63e7a1e";
 
   useEffect(() => {
     if (!foodid) return;
 
+    setLoading(true);
+
     async function fetchRecipe() {
       try {
-        const response = await fetch(
-          `${URL}?apiKey=${API_Key}`
-        );
+        const response = await fetch(`${URL}?apiKey=${API_Key}`);
 
         const data = await response.json();
 
         console.log(data);
+
         setRecipe(data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -28,103 +34,88 @@ export default function FoodDetails({ foodid }) {
   }, [foodid]);
 
   return (
-    <div>
-      <h1>Food Details</h1>
+  <section className={styles.container}>
+      <h1 className={styles.mainHeading}>Food Details</h1>
 
-      {recipe && (
+      {loading ? (
+        <p>Loading recipe...</p>
+      ) : recipe ? (
         <>
-          {/* Basic information */}
-          <h2>{recipe.title}</h2>
+          <div className={styles.header}>
+            <img
+              className={styles.image}
+              src={recipe.image}
+              alt={recipe.title}
+            />
 
-          <img
-            src={recipe.image}
-            alt={recipe.title}
+            <div className={styles.info}>
+              <h2>{recipe.title}</h2>
+
+              <p>
+                Ready in {recipe.readyInMinutes} minutes
+              </p>
+
+              <p>
+                Servings: {recipe.servings}
+              </p>
+
+              <p>
+                Health Score: {recipe.healthScore}
+              </p>
+
+              <p>
+                Price per serving: $
+                {recipe.pricePerServing}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.dietary}>
+            <span>
+              Vegetarian: {recipe.vegetarian ? "Yes" : "No"}
+            </span>
+
+            <span>
+              Vegan: {recipe.vegan ? "Yes" : "No"}
+            </span>
+
+            <span>
+              Gluten Free: {recipe.glutenFree ? "Yes" : "No"}
+            </span>
+
+            <span>
+              Dairy Free: {recipe.dairyFree ? "Yes" : "No"}
+            </span>
+          </div>
+
+          <section className={styles.summary}>
+            <h2>About this recipe</h2>
+
+            <div
+              dangerouslySetInnerHTML={{
+                __html: recipe.summary,
+              }}
+            />
+          </section>
+
+          <IngredientList
+            ingredients={recipe.extendedIngredients}
           />
 
-          <p>
-            Ready in: {recipe.readyInMinutes} minutes
-          </p>
+          <section className={styles.steps}>
+            <h2>Instructions</h2>
 
-          <p>
-            Servings: {recipe.servings}
-          </p>
+            <ol>
+              {recipe.analyzedInstructions?.[0]?.steps?.map(
+                (step) => (
+                  <li key={step.number}>
+                    {step.step}
+                  </li>
+                )
+              )}
+            </ol>
+          </section>
 
-          <p>
-            Price per serving: ${recipe.pricePerServing}
-          </p>
-
-          <p>
-            Health Score: {recipe.healthScore}
-          </p>
-
-          {/* Dietary information */}
-          <h2>Dietary Information</h2>
-
-          <p>
-            Vegetarian: {recipe.vegetarian ? "Yes" : "No"}
-          </p>
-
-          <p>
-            Vegan: {recipe.vegan ? "Yes" : "No"}
-          </p>
-
-          <p>
-            Gluten Free: {recipe.glutenFree ? "Yes" : "No"}
-          </p>
-
-          <p>
-            Dairy Free: {recipe.dairyFree ? "Yes" : "No"}
-          </p>
-
-          {/* Categories */}
-          <h2>Categories</h2>
-
-          <p>
-            Cuisines: {recipe.cuisines?.join(", ")}
-          </p>
-
-          <p>
-            Dish Types: {recipe.dishTypes?.join(", ")}
-          </p>
-
-          <p>
-            Diets: {recipe.diets?.join(", ")}
-          </p>
-
-          {/* Summary */}
-          <h2>About this recipe</h2>
-
-          <div
-            dangerouslySetInnerHTML={{
-              __html: recipe.summary,
-            }}
-          />
-
-          {/* Ingredients */}
-          <h2>Ingredients</h2>
-
-          <ul>
-            {recipe.extendedIngredients?.map((ingredient) => (
-              <li key={ingredient.id}>
-                {ingredient.original}
-              </li>
-            ))}
-          </ul>
-
-          {/* Instructions */}
-          <h2>Steps</h2>
-
-          <ol>
-            {recipe.analyzedInstructions?.[0]?.steps?.map(
-              (step) => (
-                <li key={step.number}>
-                  {step.step}
-                </li>
-              )
-            )}
-          </ol>
-
-          {/* Original recipe */}
           <a
             href={recipe.sourceUrl}
             target="_blank"
@@ -133,7 +124,9 @@ export default function FoodDetails({ foodid }) {
             View Original Recipe
           </a>
         </>
+      ) : (
+        <p>No recipe found.</p>
       )}
-    </div>
+    </section>
   );
 }

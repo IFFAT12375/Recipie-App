@@ -4,7 +4,7 @@ import styles from "./Search.module.css";
 const URL = "https://api.spoonacular.com/recipes/complexSearch";
 // const API_Key = "f2e3f61417df4163b17c074190c85778";
 // const API_Key = "08e5d61d23d2498f9f4eee2c336ad046";
-  const API_Key = `77940a4835614f61a9d7c67ff1ac57c1`;
+  const API_Key = "26100debfd4a49e786785252b63e7a1e";
 
 
 
@@ -20,7 +20,7 @@ export default function Search({ setFood }) {
           );
 
           const data = await response.json();
-          // console.log(data.results);
+          console.log(data.results);
 
           setFood(data.results);
         } catch (error) {
