@@ -1,6 +1,6 @@
 import styles from "./foodItem.module.css";
 
-export default function FoodItem({ food }) {
+export default function FoodItem({ food, setFoodid }) {
   return (
  <article className={styles.card}>
       <img
@@ -12,7 +12,7 @@ export default function FoodItem({ food }) {
       <div className={styles.content}>
         <h2>{food.title}</h2>
 
-        <button className={styles.button}>
+        <button className={styles.button} onClick={() => setFoodid(food.id)}>
           View Recipe
         </button>
       </div>

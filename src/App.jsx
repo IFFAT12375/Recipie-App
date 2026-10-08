@@ -9,6 +9,7 @@ import styles from "./App.module.css";
 
 function App() {
   const [food, setFood] = useState([]);
+  const [foodid, setFoodid] = useState(null);
 
   return (
     <OuterContainer>
@@ -18,8 +19,8 @@ function App() {
 
       <InnerContainer>
         <main className={styles.content}>
-          <FoodList food={food} />
-          <FoodDetails />
+          <FoodList food={food} setFoodid={setFoodid} />
+          <FoodDetails foodid={foodid} />
         </main>
       </InnerContainer>
     </OuterContainer>
