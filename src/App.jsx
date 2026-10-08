@@ -19,7 +19,7 @@ function App() {
 
       <InnerContainer>
       <main className={styles.content}>
-          <section className={styles.results}>
+          <section className={styles.results} id="recipes">
             <FoodList
               food={food}
               setFoodid={setFoodid}

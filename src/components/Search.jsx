@@ -34,7 +34,7 @@ export default function Search({ setFood }) {
   }, [query, setFood]);
 
   return (
-   <section className={styles.outerContainer}>
+   <section className={styles.outerContainer} id="search">
             <div className={styles.innerContainer}>
                 <div className={styles.content}>
                     <h1>Find Your Next Favourite Recipe</h1>
